@@ -238,9 +238,6 @@ daily_readings_unit
 	GROUP BY h.meter_id, gen.interval_start, u.unit_represent
 	ORDER BY gen.interval_start, h.meter_id;
 
--- TODO Check if needed and when to use as not done for hourly.
--- With the index added in 3D readings, this should be consider as part of the decision
--- on if this is needed.
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 -- We need a gist index to support the @> operation.
 CREATE INDEX if not exists idx_daily_readings_unit ON daily_readings_unit USING GIST(time_interval, meter_id);
